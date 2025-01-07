@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "HELLO_WORLD",
-    "project_version":    "25ea77f-dirty",
+    "project_version":    "5bee9ff-dirty",
     "project_path":       "C:/Users/kiera/source/repos/Coffee/hello_world",
     "idf_path":           "C:/Users/kiera/esp/v5.4/esp-idf",
     "build_dir":          "C:/Users/kiera/source/repos/Coffee/hello_world/build",
@@ -1265,12 +1265,12 @@
             "dir": "C:/Users/kiera/source/repos/Coffee/hello_world/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
-            "reqs": [ "driver", "nvs_flash", "esp-zigbee-lib", "esp-zigbee-console", "esp-zigbee-ncp" ],
+            "reqs": [ "driver", "nvs_flash", "esp-zigbee-lib" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/kiera/source/repos/Coffee/hello_world/main/coffee_zb_main.c", "C:/Users/kiera/source/repos/Coffee/hello_world/main/coffee_driver.c" ],
+            "sources": [ "C:/Users/kiera/source/repos/Coffee/hello_world/main/coffee_zb_main.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {
@@ -2901,7 +2901,7 @@
             "prefix": "idf",
             "dir": "C:/Users/kiera/source/repos/Coffee/hello_world/main",
             "lib": "__idf_main",
-            "reqs": [ "driver", "nvs_flash", "esp-zigbee-lib", "esp-zigbee-console", "esp-zigbee-ncp" ],
+            "reqs": [ "driver", "nvs_flash", "esp-zigbee-lib" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],

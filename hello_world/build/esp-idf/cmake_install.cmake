@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/hello_world")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/HELLO_WORLD")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -554,6 +554,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/main/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/esp-zigbee-console/cmake_install.cmake")
 endif()
 
@@ -565,10 +570,5 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/esp-zigbee-ncp/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/main/cmake_install.cmake")
 endif()
 

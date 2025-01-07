@@ -1,13 +1,8 @@
 idf_component_register(
-    SRCS 
-        "coffee_zb_main.c"
-        "coffee_driver.c"
+    SRCS "coffee_zb_main.c"
     INCLUDE_DIRS "."
     REQUIRES 
-        driver 
-        nvs_flash 
-        esp-zigbee-lib
-        esp-zigbee-console
-        esp-zigbee-ncp
-        # <-- Zigbee component name from esp-zigbee-sdk:
+      driver
+      nvs_flash
+      esp-zigbee-lib    # <-- Must match the actual COMPONENT_NAME if it's "esp-zigbee-lib"
 )

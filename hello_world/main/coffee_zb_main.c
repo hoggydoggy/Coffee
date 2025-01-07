@@ -12,7 +12,7 @@
 #include "esp_log.h"
 
 /* Zigbee headers from the new approach */
-#include "esp_zigbee_ha_standard.h"
+#include "ha/esp_zigbee_ha_standard.h"
 
 /* Our coffee relay driver header */
 #include "coffee_driver.h"
