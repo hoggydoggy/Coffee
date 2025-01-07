@@ -12,4 +12,4 @@ set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/components/esp_zigbee_lib")
 # Add the required component
 idf_component_register(SRCS "coffee_zb_main.c"
                        INCLUDE_DIRS "."
-                       REQUIRES esp-zigbee-lib)
+                       REQUIRES esp-zigbee-lib esp-zboss-lib)
