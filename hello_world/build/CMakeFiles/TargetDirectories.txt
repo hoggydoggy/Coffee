@@ -10,7 +10,7 @@ C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/monitor.dir
 C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/flash.dir
 C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/encrypted-flash.dir
 C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/_project_elf_src.dir
-C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/hello_world.elf.dir
+C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/HELLO_WORLD.elf.dir
 C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/size.dir
 C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/size-files.dir
 C:/Users/kiera/source/repos/Coffee/hello_world/build/CMakeFiles/size-components.dir
