@@ -4,6 +4,6 @@ idf_component_register(
     REQUIRES 
       nvs_flash
       driver
-      esp_zigbee_lib
+      esp-zigbee-lib
       esp_zb_light   # <-- We just created this component
 )

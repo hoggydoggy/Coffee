@@ -1,9 +1,0 @@
-CMake Error at C:/Users/kiera/esp/v5.4/esp-idf/tools/cmake/component.cmake:317 (message):
-  Include directory
-  'C:/Users/kiera/source/repos/Coffee/hello_world/components/esp_zigbee_lib/include'
-  is not a directory.
-Call Stack (most recent call first):
-  C:/Users/kiera/esp/v5.4/esp-idf/tools/cmake/component.cmake:492 (__component_add_include_dirs)
-  components/esp_zigbee_lib/CMakeLists.txt:1 (idf_component_register)
-
-
