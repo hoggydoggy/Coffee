@@ -1,10 +1,4 @@
 dependencies:
-  esp-zigbee-lib:
-    dependencies: []
-    source:
-      path: C:\Users\kiera\source\repos\Coffee\hello_world\components\esp-zigbee-lib
-      type: local
-    version: 1.6.1
   espressif/cmake_utilities:
     component_hash: 351350613ceafba240b761b4ea991e0f231ac7a9f59a9ee901f751bddc0bb18f
     dependencies:
@@ -15,25 +9,13 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 0.5.3
-  espressif/esp-zboss-lib:
-    component_hash: 470b2745685a0f2261e4499c54fecadac4d10e75bd58bd5bfa2588c74bfae9e1
-    dependencies:
-    - name: idf
-      require: private
-      version: '>=5.0'
-    source:
-      registry_url: https://components.espressif.com/
-      type: service
-    version: 1.6.1
   idf:
     source:
       type: idf
     version: 5.4.0
 direct_dependencies:
 - espressif/cmake_utilities
-- espressif/esp-zboss-lib
-- espressif/esp-zigbee-lib
 - idf
-manifest_hash: fdec4ef108ec7191ebe77a4ebbdbd9162d4c6143ead3e0d5f1a2191a5280956a
+manifest_hash: 987287d824e2daaa24043a6a00cf1ba5eae2f45c196efb39e862b1af4bce519c
 target: esp32c6
 version: 2.0.0

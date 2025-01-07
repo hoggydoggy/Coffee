@@ -1,38 +1,45 @@
 /*
  * coffee_zb_main.c
  *
- * Minimal Zigbee On/Off End-Device for a "Coffee Machine"
- * using the new Espressif Zigbee approach (HA_on_off_light style).
+ * A minimal Zigbee End-Device example that:
+ *  1. Initializes the Zigbee platform (radio + host).
+ *  2. Creates an On/Off Light endpoint as an example (renamed as "coffee" here).
+ *  3. Joins the Zigbee network on the primary channels.
+ * 
+ * IMPORTANT:
+ *  - In menuconfig, set ZB_ED_ROLE (End Device).
+ *  - Adjust the component name in CMakeLists.txt to ensure "esp_zb_light.h" 
+ *    and "ha/esp_zigbee_ha_standard.h" are found.
+ *  - If you have a custom driver for coffee machine relays, call it from here.
  */
 
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "nvs_flash.h"
 #include "esp_log.h"
+#include "nvs_flash.h"
 
-/* Zigbee headers from the new approach */
-#include "ha/esp_zigbee_ha_standard.h"
-
-/* Our coffee relay driver header */
-#include "coffee_driver.h"
+/* Zigbee includes */
+#include "ha/esp_zigbee_ha_standard.h" /* If your library organizes HA standard includes here */
+#include "esp_zb_light.h"              /* Typically contains On/Off Light macros, e.g., ZED configs */
 
 static const char *TAG = "coffee_zb_main";
 
-/* Forward declaration of the Zigbee task */
+/* Forward declaration of the Zigbee main task */
 static void coffee_zb_task(void *pvParameters);
 
-/*********************************************************************
- * @brief app_main
- *        The top-level entry point of the program.
- *        Initializes Zigbee platform, spawns a Zigbee task.
- *********************************************************************/
+/******************************************************************************
+ * Function: app_main
+ *    The standard ESP-IDF entry point. Initializes NVS, configures Zigbee,
+ *    and creates a Zigbee task.
+ ******************************************************************************/
 void app_main(void)
 {
     esp_err_t ret;
+
     ESP_LOGI(TAG, "==== Starting Coffee Zigbee End-Device ====");
 
-    /* Initialize NVS - required by Zigbee stack for storing network params */
+    /* Initialize NVS (required by Zigbee to store network parameters) */
     ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         ESP_ERROR_CHECK(nvs_flash_erase());
@@ -40,62 +47,59 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(ret);
 
-    /* Configure Zigbee platform */
+    /* Configure Zigbee platform: set radio/host config 
+     * These macros require ZB_ED_ROLE to be set in menuconfig.
+     */
     esp_zb_platform_config_t zb_config = {
         .radio_config = ESP_ZB_DEFAULT_RADIO_CONFIG(),
         .host_config  = ESP_ZB_DEFAULT_HOST_CONFIG(),
     };
     ESP_ERROR_CHECK(esp_zb_platform_config(&zb_config));
 
-    /* Create a dedicated Zigbee task, as recommended by the official example */
+    /* Create a dedicated Zigbee task so the stack has its own main loop. */
     xTaskCreate(coffee_zb_task, "coffee_zb_task", 4096, NULL, 5, NULL);
 }
 
-/*********************************************************************
- * @brief coffee_zb_task
- *        The main Zigbee logic: device init, endpoint creation, start.
- *********************************************************************/
+/******************************************************************************
+ * Function: coffee_zb_task
+ *    The primary Zigbee logic: 
+ *      1. Initialize as a ZED (End Device) 
+ *      2. Create a standard On/Off Light endpoint
+ *      3. Register the endpoint + set channels
+ *      4. Start the Zigbee stack event loop
+ ******************************************************************************/
 static void coffee_zb_task(void *pvParameters)
 {
     ESP_LOGI(TAG, "coffee_zb_task started");
 
-    /* 1. Initialize the Zigbee stack as an End Device (ZED). 
-     * If you want a Router, use ESP_ZB_ZR_CONFIG() instead. */
+    /* 1. Initialize Zigbee as an End Device 
+     *    This macro is valid only if ZB_ED_ROLE is enabled 
+     */
     esp_zb_cfg_t zb_nwk_cfg = ESP_ZB_ZED_CONFIG();
     esp_zb_init(&zb_nwk_cfg);
 
-    /* 2. Create a default On/Off light config
-     *    We'll adapt it to be our "coffee machine" device 
-     *    but still using on/off cluster for demonstration */
+    /* 2. Create a default On/Off Light config. 
+     *    We'll adapt it for coffee control, but the cluster is still 'On/Off'.
+     */
     esp_zb_on_off_light_cfg_t on_off_cfg = ESP_ZB_DEFAULT_ON_OFF_LIGHT_CONFIG();
-    /* Alternatively, you might define your own custom device if you want 
-     * different clusters, but let's keep it simple. */
 
-    /* 3. Create an endpoint that uses the on/off cluster 
-     *    The official example uses HA_ESP_LIGHT_ENDPOINT (which is 1 by default). 
-     *    We'll keep the same or define a new endpoint number (like 10). 
+    /* 3. Create endpoint and register it with the Zigbee stack
+     *    HA_ESP_LIGHT_ENDPOINT is a macro (e.g., 1) from esp_zb_light.h
      */
     esp_zb_ep_list_t *coffee_ep = esp_zb_on_off_light_ep_create(HA_ESP_LIGHT_ENDPOINT, &on_off_cfg);
-
-    /* 4. Register the endpoint/device with the Zigbee stack */
     esp_zb_device_register(coffee_ep);
 
-    /* 5. Optionally, register attribute callbacks if you want to override
-     *    how On/Off commands are processed. If not, the default on/off handler 
-     *    will toggle an internal boolean. We’ll show how to do that in coffee_driver. 
-     */
-    esp_zb_core_action_handler_register(esp_zb_attribute_callback);
-
-    /* 6. Set the Zigbee primary channel mask (e.g., 15, 20, etc.)
-     *    or keep the default. Example from the official sample: 
+    /* 4. Set the primary channels we want to try for joining 
+     *    e.g., 1, 11, 15, 20, etc. The macro covers a default set.
      */
     esp_zb_set_primary_network_channel_set(ESP_ZB_PRIMARY_CHANNEL_MASK);
 
-    /* 7. Start the Zigbee stack (false => no blocking). 
-     *    Then call the main event loop. This never returns. 
+    /* 5. Start the Zigbee stack. The 'false' param means no blocking. 
+     *    Then we enter the main event loop, which never returns.
      */
     ESP_ERROR_CHECK(esp_zb_start(false));
     esp_zb_stack_main_loop();
-    /* 8. If we ever exit the main loop (unlikely), delete the task. */
+
+    /* If we ever exit the main loop, tidy up. (Unlikely in normal operation.) */
     vTaskDelete(NULL);
 }

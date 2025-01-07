@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "HELLO_WORLD",
-    "project_version":    "5bee9ff-dirty",
+    "project_version":    "511f595-dirty",
     "project_path":       "C:/Users/kiera/source/repos/Coffee/hello_world",
     "idf_path":           "C:/Users/kiera/esp/v5.4/esp-idf",
     "build_dir":          "C:/Users/kiera/source/repos/Coffee/hello_world/build",
