@@ -1,6 +1,7 @@
 #include "coffee_driver.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
+#include "esp_zigbee_api_core.h"
 
 static const char *TAG = "coffee_driver";
 

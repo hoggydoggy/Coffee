@@ -10,7 +10,7 @@ project(HELLO_WORLD)
 # set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/../components")
 
 # If you cloned the esp-zigbee-sdk into a 'components' folder, do:
-set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/components/esp-zigbee-lib")
+#set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/components/esp-zigbee-lib")
 #
 # If you're using idf.py add-dependency, you might not need the above line.
 

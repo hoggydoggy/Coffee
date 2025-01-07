@@ -12,8 +12,7 @@
 #include "esp_log.h"
 
 /* Zigbee headers from the new approach */
-#include "ha/esp_zigbee_ha_standard.h"
-#include "esp_zb_light.h" // The example implements an On/Off Light device
+#include "esp_zigbee_ha_standard.h"
 
 /* Our coffee relay driver header */
 #include "coffee_driver.h"

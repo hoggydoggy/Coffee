@@ -544,11 +544,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/main/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
   include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/espressif__esp-zboss-lib/cmake_install.cmake")
 endif()
 
@@ -570,5 +565,10 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/esp-zigbee-ncp/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/kiera/source/repos/Coffee/hello_world/build/esp-idf/main/cmake_install.cmake")
 endif()
 

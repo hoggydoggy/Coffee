@@ -6,6 +6,8 @@ idf_component_register(
     REQUIRES 
         driver 
         nvs_flash 
+        esp-zigbee-lib
+        esp-zigbee-console
+        esp-zigbee-ncp
         # <-- Zigbee component name from esp-zigbee-sdk:
-        
 )

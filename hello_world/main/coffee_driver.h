@@ -1,7 +1,6 @@
 #pragma once
 
 #include <stdbool.h>
-#include "esp_zb_light.h" // For esp_zb_zcl_set_attr_value_message_t
 
 #ifdef __cplusplus
 extern "C" {

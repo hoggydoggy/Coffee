@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "HELLO_WORLD",
-    "project_version":    "bff47b1-dirty",
+    "project_version":    "25ea77f-dirty",
     "project_path":       "C:/Users/kiera/source/repos/Coffee/hello_world",
     "idf_path":           "C:/Users/kiera/esp/v5.4/esp-idf",
     "build_dir":          "C:/Users/kiera/source/repos/Coffee/hello_world/build",
@@ -221,7 +221,7 @@
             "managed_priv_reqs": [],
             "file": "",
             "sources": [],
-            "include_dirs": []
+            "include_dirs": [ "include" ]
         },
         "esp-zigbee-ncp": {
             "alias": "idf::esp-zigbee-ncp",
@@ -1091,7 +1091,7 @@
             "managed_priv_reqs": [],
             "file": "",
             "sources": [],
-            "include_dirs": []
+            "include_dirs": [ "include" ]
         },
         "esptool_py": {
             "alias": "idf::esptool_py",
@@ -1265,7 +1265,7 @@
             "dir": "C:/Users/kiera/source/repos/Coffee/hello_world/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
-            "reqs": [ "driver", "nvs_flash" ],
+            "reqs": [ "driver", "nvs_flash", "esp-zigbee-lib", "esp-zigbee-console", "esp-zigbee-ncp" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
@@ -2901,7 +2901,7 @@
             "prefix": "idf",
             "dir": "C:/Users/kiera/source/repos/Coffee/hello_world/main",
             "lib": "__idf_main",
-            "reqs": [ "driver", "nvs_flash" ],
+            "reqs": [ "driver", "nvs_flash", "esp-zigbee-lib", "esp-zigbee-console", "esp-zigbee-ncp" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
@@ -2929,7 +2929,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": []
+            "include_dirs": [ "include" ]
         },
         "esp-zigbee-ncp": {
             "alias": "idf::esp-zigbee-ncp",
@@ -2965,7 +2965,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": []
+            "include_dirs": [ "include" ]
         }
     },
     "debug_prefix_map_gdbinit": ""
