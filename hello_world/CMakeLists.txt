@@ -6,12 +6,21 @@ include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 # Name your project
 project(HELLO_WORLD)
 
-# (Optional) If you want to set default sdkconfig values, you could do:
-# set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/../components")
+# Set the extra component directories
+set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/components/esp_zigbee_lib"
+                         "${CMAKE_CURRENT_LIST_DIR}/components/espressif__esp-zboss-lib")
 
-# If you cloned the esp-zigbee-sdk into a 'components' folder, do:
-#set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/components/esp-zigbee-lib")
-#
-# If you're using idf.py add-dependency, you might not need the above line.
+# Ensure the esp_zigbee_lib component directory exists
+if(NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/components/esp_zigbee_lib")
+  message(FATAL_ERROR "Component directory ${CMAKE_CURRENT_LIST_DIR}/components/esp_zigbee_lib does not exist.")
+endif()
+
+# Ensure the espressif__esp-zboss-lib component directory exists
+if(NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/components/espressif__esp-zboss-lib")
+  message(FATAL_ERROR "Component directory ${CMAKE_CURRENT_LIST_DIR}/components/espressif__esp-zboss-lib does not exist.")
+endif()
+
+# Add the esp_zigbee_lib component explicitly
+list(APPEND EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/components/esp_zigbee_lib")
 
 # Nothing else needed here. The actual build instructions are in main/CMakeLists.txt

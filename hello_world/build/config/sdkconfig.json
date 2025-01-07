@@ -1363,11 +1363,5 @@
     "WS_TRANSPORT": true,
     "XTAL_FREQ": 40,
     "XTAL_FREQ_40": true,
-    "ZB_DEBUG_MODE": false,
-    "ZB_ENABLED": true,
-    "ZB_RADIO_NATIVE": true,
-    "ZB_RADIO_SPINEL_UART": false,
-    "ZB_ZCZR": false,
-    "ZB_ZED": true,
-    "ZB_ZGPD": false
+    "ZB_ENABLED": false
 }
