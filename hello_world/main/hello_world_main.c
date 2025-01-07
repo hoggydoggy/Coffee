@@ -19,10 +19,8 @@
 /* ============== */
 /* Zigbee Headers */
 /* ============== */
-#include "esp_zb_api.h"
-#include "esp_zb_device_esp32.h"
-#include "esp_zb_common.h"
-#include "esp_zb_clusters.h"
+#include "ha/esp_zigbee_ha_standard.h"
+
 
 /* -------------------- */
 /*  PIN/Channel Defines */
